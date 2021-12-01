@@ -2101,11 +2101,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "AddGoogleMap",
   data: function data() {
     return {
       errors: {},
+      loading: false,
       center: {
         lat: 14.390798,
         lng: 120.973177
@@ -2157,6 +2160,7 @@ __webpack_require__.r(__webpack_exports__);
     getCoordinates: function getCoordinates(location) {
       var _this2 = this;
 
+      this.loading = true;
       var lat1 = location.latLng.lat();
       var long1 = location.latLng.lng();
       axios.post("/api/getWeather", {
@@ -2186,6 +2190,8 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this2.$toaster.error(error);
         }
+      })["finally"](function () {
+        _this2.loading = false;
       });
     }
   }
@@ -6724,11 +6730,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _public_images_loading_buffering_gif__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../public/images/loading-buffering.gif */ "./public/images/loading-buffering.gif");
 // Imports
 
+
+
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_images_loading_buffering_gif__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n[data-v-bb962f12]:root {\n    --color-brand--1: #ffb545 !;\n    --color-brand--2: #00c46a;\n\n    --color-dark--1: #2d3439;\n    --color-dark--2: #42484d;\n    --color-light--1: #aaa;\n    --color-light--2: #ececec;\n    --color-light--3: rgb(214, 222, 224);\n}\n*[data-v-bb962f12] {\n    margin: 0;\n    padding: 0;\n    box-sizing: inherit;\n}\nhtml[data-v-bb962f12] {\n    font-size: 62.5%;\n    box-sizing: border-box;\n}\nbody[data-v-bb962f12] {\n    font-family: \"Manrope\", sans-serif;\n}\n\n/* GENERAL */\na[data-v-bb962f12]:link,\na[data-v-bb962f12]:visited {\n    color: var(--color-brand--1);\n}\n.app[data-v-bb962f12] {\n    color: #ececec;\n    font-weight: 400;\n    line-height: 1.6;\n    height: 100vh;\n    overscroll-behavior-y: none;\n\n    background-color: #fff;\n    padding: 2.5rem;\n\n    display: flex;\n}\n/* SIDEBAR */\n.sidebar[data-v-bb962f12] {\n    flex-basis: 35rem;\n    background-color: rgb(45 52 57);\n    padding: 3rem 5rem 4rem 5rem;\n    display: flex;\n    flex-direction: column;\n}\n.logo[data-v-bb962f12] {\n    height: 5.2rem;\n    align-self: center;\n    margin-bottom: 4rem;\n}\n.uls[data-v-bb962f12] {\n    list-style: none;\n    height: 77vh;\n    /* overflow-y: scroll;\n    overflow-x: hidden; */\n}\n.weather_info[data-v-bb962f12] {\n    background-color: #42484d;\n    border-radius: 5px;\n    padding: 1.5rem 2.75rem;\n    margin-bottom: 1.75rem;\n\n    /* display: grid; */\n    grid-template-columns: 1fr 1fr;\n    gap: 0.5rem 2.5rem;\n\n    /* Match height and activity boxes */\n    height: 10.25rem;\n    transition: all 0.5s, transform 1ms;\n}\n.list[data-v-bb962f12] {\n    border-left: 5px solid var(--color-brand--2);\n}\n.copyright[data-v-bb962f12] {\n    margin-top: auto;\n    font-size: 1.3rem;\n    text-align: center;\n    color: var(--color-light--1);\n}\n.twitter-link[data-v-bb962f12]:link,\n.twitter-link[data-v-bb962f12]:visited {\n    color: var(--color-light--1);\n    transition: all 0.2s;\n}\n.twitter-link[data-v-bb962f12]:hover,\n.twitter-link[data-v-bb962f12]:active {\n    color: var(--color-light--2);\n}\n\n/* MAP */\n#map[data-v-bb962f12] {\n    flex: 1;\n    height: 100%;\n    background-color: var(--color-light--1);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n[data-v-bb962f12]:root {\n    --color-brand--1: #ffb545 !;\n    --color-brand--2: #00c46a;\n\n    --color-dark--1: #2d3439;\n    --color-dark--2: #42484d;\n    --color-light--1: #aaa;\n    --color-light--2: #ececec;\n    --color-light--3: rgb(214, 222, 224);\n}\n*[data-v-bb962f12] {\n    margin: 0;\n    padding: 0;\n    box-sizing: inherit;\n}\nhtml[data-v-bb962f12] {\n    font-size: 62.5%;\n    box-sizing: border-box;\n}\nbody[data-v-bb962f12] {\n    font-family: \"Manrope\", sans-serif;\n}\n\n/* GENERAL */\na[data-v-bb962f12]:link,\na[data-v-bb962f12]:visited {\n    color: var(--color-brand--1);\n}\n.loader[data-v-bb962f12] {\n    position: absolute;\n    top: 0px;\n    right: 0px;\n    width: 100%;\n    height: 100%;\n    background-color: #eceaea;\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    background-size: 50px;\n    background-repeat: no-repeat;\n    background-position: center;\n    z-index: 10000000;\n    opacity: 0.4;\n    filter: alpha(opacity=40);\n}\n.app[data-v-bb962f12] {\n    color: #ececec;\n    font-weight: 400;\n    line-height: 1.6;\n    height: 100vh;\n    overscroll-behavior-y: none;\n\n    background-color: #fff;\n    padding: 2.5rem;\n\n    display: flex;\n}\n/* SIDEBAR */\n.sidebar[data-v-bb962f12] {\n    flex-basis: 35rem;\n    background-color: rgb(45 52 57);\n    padding: 3rem 5rem 4rem 5rem;\n    display: flex;\n    flex-direction: column;\n}\n.logo[data-v-bb962f12] {\n    height: 5.2rem;\n    align-self: center;\n    margin-bottom: 4rem;\n}\n.uls[data-v-bb962f12] {\n    list-style: none;\n    height: 77vh;\n    /* overflow-y: scroll;\n    overflow-x: hidden; */\n}\n.weather_info[data-v-bb962f12] {\n    background-color: #42484d;\n    border-radius: 5px;\n    padding: 1.5rem 2.75rem;\n    margin-bottom: 1.75rem;\n\n    /* display: grid; */\n    grid-template-columns: 1fr 1fr;\n    gap: 0.5rem 2.5rem;\n\n    /* Match height and activity boxes */\n    height: 10.25rem;\n    transition: all 0.5s, transform 1ms;\n}\n.list[data-v-bb962f12] {\n    border-left: 5px solid var(--color-brand--2);\n}\n.copyright[data-v-bb962f12] {\n    margin-top: auto;\n    font-size: 1.3rem;\n    text-align: center;\n    color: var(--color-light--1);\n}\n.twitter-link[data-v-bb962f12]:link,\n.twitter-link[data-v-bb962f12]:visited {\n    color: var(--color-light--1);\n    transition: all 0.2s;\n}\n.twitter-link[data-v-bb962f12]:hover,\n.twitter-link[data-v-bb962f12]:active {\n    color: var(--color-light--2);\n}\n\n/* MAP */\n#map[data-v-bb962f12] {\n    flex: 1;\n    height: 100%;\n    background-color: var(--color-light--1);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -6808,6 +6820,65 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    // eslint-disable-next-line no-param-reassign
+    options = {};
+  } // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+
+
+  url = url && url.__esModule ? url.default : url;
+
+  if (typeof url !== "string") {
+    return url;
+  } // If url is already wrapped in quotes, remove them
+
+
+  if (/^['"].*['"]$/.test(url)) {
+    // eslint-disable-next-line no-param-reassign
+    url = url.slice(1, -1);
+  }
+
+  if (options.hash) {
+    // eslint-disable-next-line no-param-reassign
+    url += options.hash;
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+
+  return url;
+};
+
+/***/ }),
+
+/***/ "./public/images/loading-buffering.gif":
+/*!*********************************************!*\
+  !*** ./public/images/loading-buffering.gif ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/loading-buffering.gif?c7d9f0819b0870f9ad8e9c98781532a4");
 
 /***/ }),
 
@@ -38924,6 +38995,8 @@ var render = function () {
     "div",
     { staticClass: "app" },
     [
+      _vm.loading ? _c("div", { staticClass: "loader" }) : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "sidebar" }, [
         _c("img", {
           staticClass: "logo",
