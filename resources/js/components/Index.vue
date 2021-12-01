@@ -1,5 +1,7 @@
 <template>
     <div class="app">
+        <div class="loader" v-if="loading"></div>
+
         <div class="sidebar">
             <img v-bind:src="'images/weather.png'" alt="Logo" class="logo" />
             <div class="weather_info">
@@ -40,6 +42,7 @@ export default {
     data() {
         return {
             errors: {},
+            loading: false,
             center: {
                 lat: 14.390798,
                 lng: 120.973177,
@@ -92,6 +95,7 @@ export default {
                 });
         },
         getCoordinates(location) {
+            this.loading = true;
             const lat1 = location.latLng.lat();
             const long1 = location.latLng.lng();
 
@@ -124,6 +128,9 @@ export default {
                     } else {
                         this.$toaster.error(error);
                     }
+                })
+                .finally(() => {
+                    this.loading = false;
                 });
         },
     },
@@ -162,7 +169,21 @@ a:link,
 a:visited {
     color: var(--color-brand--1);
 }
-
+.loader {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #eceaea;
+    background-image: url("../../../public/images/loading-buffering.gif");
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 10000000;
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
 .app {
     color: #ececec;
     font-weight: 400;

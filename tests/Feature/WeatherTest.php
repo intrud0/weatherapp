@@ -15,7 +15,12 @@ class WeatherTest extends TestCase
      */
     public function test_weather_api()
     {
-        $this->json('POST', '/api/getWeather', ['latitude' => 14.390798, 'longitude' => 120.973177])
-                ->assertJson(['cod' => 200]);
+        $this->json('POST', '/api/getWeather', [
+            'latitude' => 14.390798, 
+            'longitude' => 120.973177
+            ])
+                ->assertJson([
+                    'cod' => 200
+                ]);
     }
 }
