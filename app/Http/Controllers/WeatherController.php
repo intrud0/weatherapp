@@ -8,7 +8,10 @@ use App\Http\Requests\WeatherPostRequest;
 
 class WeatherController extends Controller
 {
-    //
+    public function index()
+    {
+        return view('home');
+    }
     public function getWeather(WeatherPostRequest $request)
     {
 
