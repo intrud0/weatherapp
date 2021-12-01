@@ -3,6 +3,7 @@
 namespace App\Api;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 Class Weather{
   private $latitude;
@@ -24,11 +25,13 @@ Class Weather{
         'appid' => env('OPEN_WEATHER_APP_ID'),
         'units' => 'metric']
       );
-  
-      return $response->body();
-    } catch (\Illuminate\Http\Client\ConnectionException $e) {
+      log::channel('custom')->info($response);  
+    } catch (\Exception $e) {
       return $e->getMessage();
+      log::channel('custom')->error($e->getMessage());
     }
+
+    return $response->body();
     
   }
 }
