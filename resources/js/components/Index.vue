@@ -78,7 +78,17 @@ export default {
                     }
                 })
                 .catch((error) => {
-                    this.$toaster.error(error);
+                    if (error.response.status === 422) {
+                        this.errors = error.response.data.errors;
+                        if (this.errors.longitude) {
+                            this.$toaster.error(this.errors.longitude[0]);
+                        }
+                        if (this.errors.latitude) {
+                            this.$toaster.error(this.errors.latitude[0]);
+                        }
+                    } else {
+                        this.$toaster.error(error);
+                    }
                 });
         },
         getCoordinates(location) {
@@ -87,7 +97,7 @@ export default {
             const long1 = location.latLng.lng();
 
             axios
-                .post("/api/getWeather", { latitude: lat1 })
+                .post("/api/getWeather", { latitude: lat1, longitude: long1 })
                 .then((res) => {
                     console.log(res.data);
                     if (res.data.cod === 200) {
@@ -104,8 +114,17 @@ export default {
                     }
                 })
                 .catch((error) => {
-                    this.$toaster.error(error);
-                    console.log(error);
+                    if (error.response.status === 422) {
+                        this.errors = error.response.data.errors;
+                        if (this.errors.longitude) {
+                            this.$toaster.error(this.errors.longitude[0]);
+                        }
+                        if (this.errors.latitude) {
+                            this.$toaster.error(this.errors.latitude[0]);
+                        }
+                    } else {
+                        this.$toaster.error(error);
+                    }
                 });
         },
     },
