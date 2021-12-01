@@ -2163,6 +2163,8 @@ __webpack_require__.r(__webpack_exports__);
         latitude: lat1,
         longitude: long1
       }).then(function (res) {
+        console.log(res.data);
+
         if (res.data.cod === 200) {
           document.querySelector(".loc").textContent = res.data.name + ", " + res.data.sys.country;
           document.querySelector(".temp").textContent = "".concat(res.data.main.temp, "\xB0C");
