@@ -92,14 +92,12 @@ export default {
                 });
         },
         getCoordinates(location) {
-            console.log(location);
             const lat1 = location.latLng.lat();
             const long1 = location.latLng.lng();
 
             axios
                 .post("/api/getWeather", { latitude: lat1, longitude: long1 })
                 .then((res) => {
-                    console.log(res.data);
                     if (res.data.cod === 200) {
                         document.querySelector(".loc").textContent =
                             res.data.name + ", " + res.data.sys.country;
@@ -208,7 +206,7 @@ a:visited {
     gap: 0.5rem 2.5rem;
 
     /* Match height and activity boxes */
-    height: 9.25rem;
+    height: 10.25rem;
     transition: all 0.5s, transform 1ms;
 }
 
