@@ -17,6 +17,7 @@ Class Weather{
   public function getCurrentWeather(){
     
     try{
+      // get current weather based on coordinates
       $response = Http::get('https://api.openweathermap.org/data/2.5/weather', [
         'lon' => $this->longitude,
         'lat' => $this->latitude,
@@ -29,6 +30,7 @@ Class Weather{
       if($c2 || $c3 || $c1){
         return $response->throw();
       }
+
       return $response->body();
     } catch (\Illuminate\Http\Client\ConnectionException $e) {
       return $e->getMessage();

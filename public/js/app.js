@@ -2139,7 +2139,19 @@ __webpack_require__.r(__webpack_exports__);
           _this.$toaster.error(res.data.message);
         }
       })["catch"](function (error) {
-        _this.$toaster.error(error);
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors;
+
+          if (_this.errors.longitude) {
+            _this.$toaster.error(_this.errors.longitude[0]);
+          }
+
+          if (_this.errors.latitude) {
+            _this.$toaster.error(_this.errors.latitude[0]);
+          }
+        } else {
+          _this.$toaster.error(error);
+        }
       });
     },
     getCoordinates: function getCoordinates(location) {
@@ -2149,7 +2161,8 @@ __webpack_require__.r(__webpack_exports__);
       var lat1 = location.latLng.lat();
       var long1 = location.latLng.lng();
       axios.post("/api/getWeather", {
-        latitude: lat1
+        latitude: lat1,
+        longitude: long1
       }).then(function (res) {
         console.log(res.data);
 
@@ -2161,9 +2174,19 @@ __webpack_require__.r(__webpack_exports__);
           _this2.$toaster.error(res.data.message);
         }
       })["catch"](function (error) {
-        _this2.$toaster.error(error);
+        if (error.response.status === 422) {
+          _this2.errors = error.response.data.errors;
 
-        console.log(error);
+          if (_this2.errors.longitude) {
+            _this2.$toaster.error(_this2.errors.longitude[0]);
+          }
+
+          if (_this2.errors.latitude) {
+            _this2.$toaster.error(_this2.errors.latitude[0]);
+          }
+        } else {
+          _this2.$toaster.error(error);
+        }
       });
     }
   }
