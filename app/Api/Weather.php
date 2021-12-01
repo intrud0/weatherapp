@@ -24,13 +24,7 @@ Class Weather{
         'appid' => env('OPEN_WEATHER_APP_ID'),
         'units' => 'metric']
       );
-      $c1 = $response->failed();
-      $c2 = $response->clientError();
-      $c3 = $response->serverError();
-      if($c2 || $c3 || $c1){
-        return $response->throw();
-      }
-
+  
       return $response->body();
     } catch (\Illuminate\Http\Client\ConnectionException $e) {
       return $e->getMessage();
