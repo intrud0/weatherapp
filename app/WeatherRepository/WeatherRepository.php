@@ -1,27 +1,20 @@
 <?php
 
-namespace App\Api;
+namespace App\WeatherRepository;
 
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
-Class Weather{
-  private $latitude;
-  private $longitude;
-  
-  public function __construct($latitude, $longitude)
-  {
-    $this->latitude = $latitude;
-    $this->longitude = $longitude;
-  }
+Class WeatherRepository
+{
 
-  public function getCurrentWeather(){
+  public function getCurrentWeather($latitude, $longitude){
     
     try{
       // get current weather based on coordinates
       $response = Http::get('https://api.openweathermap.org/data/2.5/weather', [
-        'lon' => $this->longitude,
-        'lat' => $this->latitude,
+        'lon' => $longitude,
+        'lat' => $latitude,
         'appid' => env('OPEN_WEATHER_APP_ID'),
         'units' => 'metric']
       );
